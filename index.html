@@ -6,13 +6,13 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f8ff;
+      background-color: #eaf6ff;
       margin: 0;
       padding: 20px;
     }
     h1 {
       text-align: center;
-      color: #003366;
+      color: #002b80;
     }
     .grid {
       display: grid;
@@ -21,31 +21,32 @@
       margin-top: 20px;
     }
     .semester {
-      background-color: #e6f2ff;
-      border: 1px solid #ccc;
+      background-color: #d0e7ff;
+      border: 1px solid #6699cc;
       border-radius: 8px;
       padding: 10px;
     }
     .semester h2 {
       text-align: center;
-      color: #002244;
+      color: #003366;
     }
     .course {
-      background-color: #fff;
-      border: 1px solid #ccc;
+      background-color: #ffffff;
+      border: 1px solid #0059b3;
       border-radius: 5px;
       margin: 5px 0;
       padding: 8px;
       cursor: pointer;
       position: relative;
+      transition: background-color 0.3s;
     }
     .course.locked {
-      background-color: #ffe4b2;
+      background-color: #ffd480;
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: 0.7;
     }
     .course.approved {
-      background-color: #cce5cc;
+      background-color: #66cc66;
       text-decoration: line-through;
     }
     .tooltip {
@@ -161,7 +162,7 @@
     ];
 
     const approved = JSON.parse(localStorage.getItem('bioanalisis_aprobadas')) || [];
-    let servicioComunitario = JSON.parse(localStorage.getItem('bioanalisis_servicio')) || false;
+    const servicioComunitario = true;
 
     function getTotalAprobadasSinElectivas() {
       return curriculum.flatMap(s => s.materias)
@@ -226,19 +227,10 @@
 
         grid.appendChild(col);
       });
-
-      const svcBtn = document.createElement('button');
-      svcBtn.textContent = servicioComunitario ? 'Servicio Comunitario: Aprobado' : 'Marcar Servicio Comunitario como Aprobado';
-      svcBtn.style.marginTop = '20px';
-      svcBtn.onclick = () => {
-        servicioComunitario = !servicioComunitario;
-        localStorage.setItem('bioanalisis_servicio', JSON.stringify(servicioComunitario));
-        crearMalla();
-      };
-      document.body.appendChild(svcBtn);
     }
 
     crearMalla();
   </script>
 </body>
 </html>
+
